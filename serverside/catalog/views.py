@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from .permissions import IsAdminOrReadOnly
 from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.response import Response
@@ -9,9 +10,9 @@ from .serializers import ProductSerializer
 
 
 class ProductList(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
+	queryset = Product.objects.all()
+	serializer_class = ProductSerializer
+	permission_classes = (IsAdminOrReadOnly, )
 # class ProductList(generics.ListAPIView):
 #     queryset = Product.objects.all()
 #     serializer_class = ProductSerializer
@@ -40,3 +41,4 @@ class ProductList(generics.ListCreateAPIView):
 #         serializer = ProductSerializer(products, many=True)
 #         return JSONResponse(serializer.data)
 
+#Authorization: Token 33fc5e530746b4b54272eb7c3959a5caa150441c
