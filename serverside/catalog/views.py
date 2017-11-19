@@ -8,9 +8,13 @@ from .models import Product
 from .serializers import ProductSerializer
 
 
-class ProductList(generics.ListAPIView):
+class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+# class ProductList(generics.ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
 
 # class ProductList(APIView):
 #     def get(self, request, format=None):
